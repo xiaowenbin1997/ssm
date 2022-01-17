@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.StudentDao">
+    <select id="searchStu" resultType="domain.Student">
+        select id,name,email,age from mybatis_stu order by id
+    </select>
+    <insert id="insertOneStu">
+        insert into mybatis_stu values(#{id},#{name},#{email},#{age})
+    </insert>
+    <select id="selectStudentById" resultType="domain.Student">
+        select id,name,email,age from mybatis_stu where id = #{studentId}
+    </select>
+    <select id="selectMaltiParam" resultType="domain.Student">
+        select id,name,email,age from mybatis_stu where name = #{myname} or age = #{myage}
+    </select>
+    <select id="selectMultiObject" resultType="domain.Student">
+        select id,name,email,age from mybatis_stu where name = #{paramName} or age = #{paramAge}
+    </select>
+    <select id="selectMultiStu" resultType="domain.Student">
+        select id,name,email,age from mybatis_stu where name = #{name} or age = #{age}
+    </select>
+    <select id="selectMultiByMap" resultType="domain.Student">
+        select id,name,email,age from mybatis_stu where name = #{name} or age = #{age}
+    </select>
+    <select id="selectUse$" resultType="domain.Student">
+        select * from mybatis_stu where name = ${name}
+    </select>
+    <select id="selectUse$Order" resultType="domain.Student">
+        select * from mybatis_stu order by ${colName}
+    </select>
+</mapper>
