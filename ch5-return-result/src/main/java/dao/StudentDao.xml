@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.StudentDao">
+    <select id="selectStuById" resultType="domain.Student">
+        select id,name,email,age from student where id=#{myId}
+    </select>
+    <select id="selectStuReturnViewStudent" resultType="domain.ViewStudent">
+        select id,name from student where id=#{sid}
+    </select>
+    <select id="countStudent" resultType="java.lang.Integer">
+        select count(*) from student
+    </select>
+    <select id="selectMapById" resultType="java.util.Map">
+        select id,name,email,age from student where id = #{myId}
+    </select>
+    <resultMap id="stuMap" type="domain.Student">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="email" property="email"></result>
+        <result column="age" property="age"></result>
+    </resultMap>
+    <select id="selectAllStu" resultMap="stuMap">
+        select id,name,email,age from student
+    </select>
+
+    <resultMap id="MyStuMap" type="domain.MyStudent">
+        <id column="id" property="stuId"/>
+        <result column="name" property="stuName"/>
+        <result column="email" property="stuEmail"/>
+        <result column="age" property="stuAge"/>
+    </resultMap>
+    <select id="selectAllMyStu" resultMap="MyStuMap">
+        select id,name,email,age from student
+    </select>
+    <select id="selectMyStu" resultType="domain.MyStudent">
+        select id as stuId,name as stuName,email as stuEmail,age as stuAge from student
+    </select>
+    <select id="selectLikeOne" resultType="domain.Student">
+        select * from student where name like #{name}
+    </select>
+    <select id="selectLikeTwo" resultType="domain.Student">
+        select * from student where name like '%'  #{name} '%'
+    </select>
+</mapper>
