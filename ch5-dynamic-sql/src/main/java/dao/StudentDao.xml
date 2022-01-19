@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.StudentDao">
+    <select id="selectStudentIf" resultType="domain.Student">
+        select id,name,email,age from mybatis_stu
+        where id > 0
+        <if test="name != null and name != ''">
+            and name = #{name}
+        </if>
+        <if test="age > 7">
+            and age > #{age}
+        </if>
+    </select>
+    <select id="selectStudentWhere" resultType="domain.Student">
+        select id,name,email,age from mybatis_stu
+        <where>
+            <if test="name != null and name != ''">
+                name = #{name}
+            </if>
+            <if test="age > 20">
+                and age > #{age}
+            </if>
+        </where>
+    </select>
+    <select id="selectForeachOne" resultType="domain.Student">
+        select * from mybatis_stu where id in
+        <foreach collection="list" item="ids" separator="," open="(" close=")">
+            #{ids}
+        </foreach>
+    </select>
+    <select id="selectForeachTwo" resultType="domain.Student">
+        select * from mybatis_stu where id in
+        <foreach collection="list" open="(" close=")" separator="," item="stu">
+            #{stu.id}
+        </foreach>
+    </select>
+</mapper>
