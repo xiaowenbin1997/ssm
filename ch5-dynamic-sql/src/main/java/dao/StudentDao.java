@@ -3,6 +3,7 @@ package dao;
 import domain.QueryParam;
 import domain.Student;
 import org.apache.ibatis.annotations.Param;
+import org.w3c.dom.ls.LSInput;
 
 import java.io.InputStream;
 import java.util.List;
@@ -20,4 +21,7 @@ public interface StudentDao {
 
     //foreach 用法 2
     List<Student> selectForeachTwo(List<Student> stulist);
+
+    //测试pagehelper
+    List<Student> selectAll();
 }

@@ -36,4 +36,7 @@
             #{stu.id}
         </foreach>
     </select>
+    <select id="selectAll" resultType="domain.Student">
+        select * from mybatis_stu
+    </select>
 </mapper>

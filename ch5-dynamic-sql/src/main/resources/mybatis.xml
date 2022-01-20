@@ -6,6 +6,9 @@
     <settings>
         <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
     <environments default="bjpowernode">
         <environment id="bjpowernode">
             <transactionManager type="JDBC"></transactionManager>
@@ -18,7 +21,9 @@
 
         </environment>
     </environments>
+
     <mappers>
         <mapper resource="dao/StudentDao.xml"></mapper>
     </mappers>
+
 </configuration>

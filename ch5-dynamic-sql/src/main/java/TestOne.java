@@ -1,3 +1,4 @@
+import com.github.pagehelper.PageHelper;
 import dao.StudentDao;
 import domain.QueryParam;
 import domain.Student;
@@ -51,5 +52,16 @@ public class TestOne {
         stuList.add(new Student(2));
         stuList.add(new Student(66));
         studentDao.selectForeachTwo(stuList);
+    }
+    @Test
+    public void testPageHelper() {
+        SqlSession sqlSession = MyBatisUtils.getSession();
+        StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+        List<Student> stuList = new ArrayList<>();
+        PageHelper.startPage(1,3);
+        stuList = studentDao.selectAll();
+        for (Student student : stuList) {
+            System.out.println(student);
+        }
     }
 }
